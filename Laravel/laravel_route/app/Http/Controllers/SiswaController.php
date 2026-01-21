@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -12,7 +13,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        return view('admin.data_siswa');
+        $data = Siswa::all();
+        return view('admin.data_siswa', compact('data'));
     }
 
     /**
@@ -20,7 +22,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.input_data_siswa');
+        $jurusan = Jurusan::all();
+        return view('admin.input_data_siswa', compact('jurusan'));
     }
 
     /**
@@ -28,19 +31,30 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'nis' => 'required|integer|unique:siswas,nis',
-            'kelas' => 'required|string|max:10',
-        ]);
+        // Data diterima dalam bentuk array:
+        // $request->nama   = ['nama1', 'nama2', ...]
+        // $request->nis    = ['nis1', 'nis2', ...]
+        // $request->jurusan_id = [1, 2, ...]
 
-        Siswa::create([
-            'nama' => $request->nama,
-            'nis' => $request->nis,
-            'kelas' => $request->kelas
+        $validatedData = $request->validate([
+            'nama.*'       => 'required|string|max:255',
+            'nis.*'        => 'required|numeric|unique:siswas,nis',
+            'kelas.*'      => 'required|string|max:50',
+            'jurusan_id.*' => 'required|exists:jurusan,id', // Pastikan tabel jurusan sudah benar
         ]);
+        
+        // Loop untuk menyimpan setiap siswa
+        foreach ($request->nama as $index => $nama) {
+            Siswa::create([
+                'nama'       => $nama,
+                'nis'        => $request->nis[$index],
+                'kelas'      => $request->kelas[$index],
+                'jurusan_id' => $request->jurusan_id[$index],
+                // Tambahkan field lain jika ada
+            ]);
+        }
 
-        return redirect('/data_siswa')->with('success', 'Siswa berhasil ditambahkan!');
+        return redirect('/data_siswa')->with('success', 'Semua data siswa berhasil ditambahkan!');
     }
 
     /**
@@ -57,7 +71,8 @@ class SiswaController extends Controller
     public function edit(Siswa $siswa)
     {
         // Kirim data siswa ke view edit
-        return view('admin.edit_siswa', compact('siswa'));
+        $jurusan = Jurusan::all();
+        return view('admin.edit_siswa', compact('siswa', 'jurusan'));
     }
 
     /**
@@ -69,12 +84,14 @@ class SiswaController extends Controller
             'nama' => 'required|string|max:255',
             'nis' => 'required|integer|unique:siswas,nis,' . $siswa->id,
             'kelas' => 'required|string|max:10',
+            'jurusan_id' => 'required|exists:jurusan,id',
         ]);
 
         $siswa->update([
             'nama' => $request->nama,
             'nis' => $request->nis,
-            'kelas' => $request->kelas
+            'kelas' => $request->kelas,
+            'jurusan_id' => $request->jurusan_id,
         ]);
 
         return redirect('/data_siswa')->with('success', 'Data siswa berhasil diupdate!');

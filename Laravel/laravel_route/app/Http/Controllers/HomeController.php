@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Jurusan;
 use App\Models\Siswa;
 
 class HomeController extends Controller
@@ -25,16 +26,5 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
-    }
-
-    public function data_siswa()
-    {
-        $data = Siswa::all();
-        return view('admin.data_siswa', compact('data'));
-    }
-    
-    public function input_data_siswa()
-    {
-        return view('admin.input_data_siswa');
     }
 }

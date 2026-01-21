@@ -322,57 +322,67 @@ return [
         ],
         ['header' => 'account_settings'],
         [
+            'text' => 'Admin Menu',
+            'icon' => 'fas fa-fw fa-share',
+            'can' => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'Admin Home',
+                    'url' => '/admin/home',
+                    'icon' => 'fas fa-fw fa-key',
+                ],
+            ],
+        ],
+        [
             'text' => 'Home',
             'url' => '/home',
             'icon' => 'fas fa-fw fa-house',
         ],
         [
-            'text' => 'Data Siswa',
-            'url' => '/data_siswa',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Input Data Siswa',
-            'url' => '/input_data_siswa',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'multilevel',
+            'text' => 'Data Siswa Menu',
             'icon' => 'fas fa-fw fa-share',
+            'active' => ['siswa/*/edit', 'data_siswa', 'input_data_siswa'],
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'Data Siswa',
+                    'url' => '/siswa',
+                    'icon' => 'fas fa-fw fa-user',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Input Data Siswa',
+                    'url' => '/siswa/create',
+                    'icon' => 'fas fa-fw fa-lock',
                 ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
+                // [
+                //     'text' => 'level_one',
+                //     'url' => '#',
+                //     'submenu' => [
+                //         [
+                //             'text' => 'level_two',
+                //             'url' => '#',
+                //         ],
+                //         [
+                //             'text' => 'level_two',
+                //             'url' => '#',
+                //             'submenu' => [
+                //                 [
+                //                     'text' => 'level_three',
+                //                     'url' => '#',
+                //                 ],
+                //                 [
+                //                     'text' => 'level_three',
+                //                     'url' => '#',
+                //                 ],
+                //             ],
+                //         ],
+                //     ],
+                // ],
             ],
+        ],
+        [
+            'text' => 'Pengaduan',
+            'url' => '/pengaduan',
+            'icon' => 'fas fa-fw fa-gavel',
         ],
     ],
 
