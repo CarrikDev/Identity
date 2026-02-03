@@ -54,7 +54,7 @@ class SiswaController extends Controller
             ]);
         }
 
-        return redirect('/data_siswa')->with('success', 'Semua data siswa berhasil ditambahkan!');
+        return redirect('/siswa')->with('success', 'Semua data siswa berhasil ditambahkan!');
     }
 
     /**
@@ -94,7 +94,7 @@ class SiswaController extends Controller
             'jurusan_id' => $request->jurusan_id,
         ]);
 
-        return redirect('/data_siswa')->with('success', 'Data siswa berhasil diupdate!');
+        return redirect('/siswa')->with('success', 'Data siswa berhasil diupdate!');
     }
 
     /**
@@ -103,6 +103,6 @@ class SiswaController extends Controller
     public function destroy(Siswa $siswa)
     {
         $siswa->delete();
-        return redirect('/data_siswa')->with('success', 'Siswa berhasil dihapus!');
+        return redirect('/siswa')->with('success', 'Siswa berhasil dihapus!');
     }
 }

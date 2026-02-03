@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Mizumiya</b> Group',
+    'logo' => '<b style="color: cyan;">Mizumiya</b> Group',
     'logo_img' => 'vendor/cfscomponent/dist/img/Mizumiya-Su.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -339,7 +339,7 @@ return [
             'icon' => 'fas fa-fw fa-house',
         ],
         [
-            'text' => 'Data Siswa Menu',
+            'text' => 'Menu Data Siswa',
             'icon' => 'fas fa-fw fa-share',
             'active' => ['siswa/*/edit', 'data_siswa', 'input_data_siswa'],
             'submenu' => [
@@ -380,9 +380,26 @@ return [
             ],
         ],
         [
-            'text' => 'Pengaduan',
-            'url' => '/pengaduan',
+            'text' => 'Menu Pengaduan',
             'icon' => 'fas fa-fw fa-gavel',
+            'can' => 'siswa',
+            'submenu' => [
+                [
+                    'text' => 'Form Pengaduan',
+                    'url' => '/pengaduan',
+                    'icon' => 'fas fa-fw fa-plus',
+                ],
+                [
+                    'text' => 'List Aspirasi',
+                    'url' => '/list_aspirasi',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+                [
+                    'text' => 'Riwayat',
+                    'url' => '/riwayat_pengaduan',
+                    'icon' => 'fas fa-fw fa-history',
+                ]
+            ]
         ],
     ],
 

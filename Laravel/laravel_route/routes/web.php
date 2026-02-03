@@ -19,10 +19,12 @@ Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit']);
 Route::put('/siswa/{siswa}', [SiswaController::class, 'update']);
 Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
 
-Route::get('/pengaduan', [JurusanController::class, 'insert_pengaduan']);
-
 Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.admin_home');
+});
+
+Route::middleware(['role:siswa'])->group(function () {
+    Route::get('/pengaduan', [JurusanController::class, 'insert_pengaduan']);
 });
 
 Auth::routes();
