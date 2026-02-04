@@ -322,7 +322,7 @@ return [
             'can' => 'manage-blog',
         ],
         
-        ['header' => 'account_settings'],
+        ['header' => 'account_settings', 'can' => 'isSiswa'],
         [
             'text' => 'Home',
             'url' => 'home',
@@ -372,17 +372,31 @@ return [
         ],
         ],
         //ini halaman admin
+        ['header' => 'ADMIN DASHBOARD', 'can' => 'isAdmin'],
+        [
+            'url' => 'home',
+            'text' => 'Dashboard',
+            'can' => 'isAdmin',
+            'icon' => 'fas fa-home',
+        ],
         [
             'url' => 'list_aspirasi',
             'text' => 'List Aspirasi',
-            'can' => 'isAdmin',   
-            'icon' => 'fas fa-fw-user',
+            'can' => 'isAdmin',
+            'icon' => 'fas fa-list',
+            'active' => ['detail_aspirasi/*'],
+        ],
+        [
+            'url' => 'history_siswa',
+            'text' => 'History Siswa',
+            'can' => 'isAdmin',
+            'icon' => 'fas fa-history',
         ],
         [
             'url' => 'laporan_aspirasi',
             'text' => 'Laporan',
             'can' => 'isAdmin',   
-            'icon' => 'fas fa-fw-file',
+            'icon' => 'fas fa-file-alt',
         ],
         
     ],

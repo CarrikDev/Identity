@@ -69,12 +69,6 @@ class HomeController extends Controller
         return redirect()->route('admin.history')->with('success', 'Pengaduan berhasil dikirim!');
     }
 
-      public function history_siswa()
-    {
-        $data = Complaint::where('user_id', auth()->id())->get();
-        return view('admin.history', compact('data'));
-    }
-
     public function store_siswa(request $request)
     {
     $request->validate([

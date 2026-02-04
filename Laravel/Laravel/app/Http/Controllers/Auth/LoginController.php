@@ -49,7 +49,6 @@ class LoginController extends Controller
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
-            'role' => 'required|string|in:student,admin',
         ]);
     }
 
@@ -62,9 +61,6 @@ class LoginController extends Controller
      */
     protected function authenticated(\Illuminate\Http\Request $request, $user)
     {
-        if ($user->role !== $request->role) {
-            auth()->logout();
-            return back()->withErrors(['role' => 'Role yang dipilih tidak sesuai dengan akun Anda.']);
-        }
+        
     }
 }

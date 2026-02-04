@@ -31,13 +31,22 @@ Route::get('/input_pengaduan', [HomeController::class, 'input_pengaduan'])->name
 Route::post('/store_pengaduan', [HomeController::class, 'store_pengaduan'])->name('admin.store_pengaduan');
 
 Route::get('/admin', function () {return view('admin.tes');})->name('admin.page');
-Route::get('/history_siswa', [HomeController::class, 'history_siswa'])->name('admin.history');
 
 Route::get('/list_aspirasi', [ComplainController::class, 'index'])->name('admin.list_aspirasi');
+// Gunakan PUT agar sesuai dengan @method('PUT') di view
+Route::put('/update_aspirasi/status/{id}', [ComplainController::class, 'status'])->name('admin.update_status');
+
+Route::post('/update_aspirasi/feedback/{id}', [ComplainController::class, 'feedback'])->name('admin.feedback');
+
+Route::post('/aspirasi/{id}/reject', [AspirasiController::class, 'reject'])
+    ->name('aspirasi.reject');
+
 // Menggunakan Route Name
 Route::get('/detail_aspirasi/{id}', [HomeController::class, 'detail_aspirasi'])->name('aspirasi.detail');
 
 Route::get('/laporan_aspirasi', [HomeController::class, 'laporan_aspirasi'])->name('admin.Laporan');
+
+Route::get('/history_siswa', [ComplainController::class, 'history'])->name('admin.history');
 
 // Route::get('/list_aspirasi', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.list_aspirasi');
 

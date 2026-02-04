@@ -48,7 +48,7 @@
             </div>
             <div class="card-body">
                 <!-- Pastikan action ini sesuai dengan route update kamu -->
-                <form method="POST" action="#">
+                <form method="POST" action="{{ route('admin.update_status', $aspirasi->id) }}">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -76,12 +76,12 @@
                 </h5>
             </div>
             <div class="card-body">
-                <form method="POST" action="#">
+                <form method="POST" action="{{ route('admin.feedback', $aspirasi->id) }}">
                     @csrf
                     <div class="form-group">
                         <label>Pesan Feedback</label>
-                        <textarea name="message" class="form-control" rows="4"
-                            placeholder="Tulis umpan balik untuk siswa...">{{ $aspirasi->feedback }}</textarea>
+                        <textarea name="feedback" class="form-control" rows="4"
+                            placeholder="Tulis umpan balik untuk siswa...">{{ $aspirasi->feedback ? $aspirasi->feedback->message : '' }}</textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary">

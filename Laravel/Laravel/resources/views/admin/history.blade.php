@@ -41,7 +41,7 @@
                         </thead>
 
                         <tbody>
-                            @forelse($data as $complaint)
+                            @forelse($complaints as $complaint)
                             <tr>
                                 {{-- JUDUL --}}
                                 <td class="font-weight-bold">
