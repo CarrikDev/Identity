@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role')->default('user'); // ✅ FIX UTAMA
+            $table->string('role')->default('siswa'); // ✅ FIX UTAMA
             $table->rememberToken();
             $table->timestamps();
         });
